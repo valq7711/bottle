@@ -1138,7 +1138,7 @@ class Bottle(object):
 # HTTP and WSGI Tools ##########################################################
 ###############################################################################
 
-# multipart parsing stuff
+# Multipart parsing stuff
 
 class StopMarkupException(BottleException):
     pass
