@@ -1444,7 +1444,7 @@ class MPHeader:
 
 class MPFieldStorage:
 
-    _patt = re.compile('(.+?)(=(.+?))?(;|$)')
+    _patt = re.compile(tonat('(.+?)(=(.+?))?(;|$)'))
 
     def __init__(self):
         self.name = None
@@ -1461,7 +1461,7 @@ class MPFieldStorage:
         if has_read > max_read:
             raise HTTPError(413, 'Request entity too large')
         src.seek(start)
-        headers_raw = touni(src.read(sz))
+        headers_raw = tonat(src.read(sz))
         for header_raw in headers_raw.splitlines():
             header = self.parse_header(header_raw)
             self.headers[header.name] = header
@@ -1482,7 +1482,7 @@ class MPFieldStorage:
                 if has_read > max_read:
                     raise HTTPError(413, 'Request entity too large')
                 src.seek(start)
-                self.value = touni(src.read(sz))
+                self.value = tonat(src.read(sz))
             else:
                 self.value = ''
         return has_read
